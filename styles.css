@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+.Calculator {
+  display: flex;
+  height: 80%;
+  width: 500px;
+  justify-content: center;
+  align-self: center;
+  background-color: rgb(119, 8, 150);
+  flex-direction: column;
+  border-radius: 5px;
+  border: none;
+}
+
+.rowOne,
+.rowTwo,
+.rowThree,
+.rowFour,
+.rowFive {
+  display: flex;
+  flex: auto;
+  width: 100%;
+}
+.display {
+  display: flex;
+  background-color: grey;
+  margin: 5px 5px 2px;
+  flex-grow: 1;
+}
+.choices {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 4;
+  margin: 3px;
+}
+button {
+  display: flex;
+  flex: auto;
+  max-width: 117px;
+  border: 0;
+  padding: 0;
+  margin: 3px;
+  border-radius: 5px;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  font-size: larger;
+  font-weight: bold;
+}
+.rowFive .number {
+  max-width: 300px;
+  flex-grow: 2;
+}
+.rowFive .operate {
+  max-width: 300px;
+  flex-grow: 1;
+}
