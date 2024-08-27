@@ -32,6 +32,11 @@ body {
   background-color: grey;
   margin: 5px 5px 2px;
   flex-grow: 1;
+  align-items: center;
+  justify-content: end;
+  font-size: xx-large;
+  font-weight: bold;
+  white-space: nowrap;
 }
 .choices {
   display: flex;
