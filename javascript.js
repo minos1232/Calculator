@@ -23,7 +23,11 @@ function operate() {
     result = add(one, two);
     display.textContent = result;
     firstNumber = `${result}`;
-    one = parseInt(firstNumber);
+    if (firstNumber.includes(".")) {
+      one = parseFloat(firstNumber);
+    } else {
+      one = parseInt(firstNumber);
+    }
     secondNumber = "";
     operator = "";
     result = null;
@@ -31,7 +35,11 @@ function operate() {
     result = subtract(one, two);
     display.textContent = result;
     firstNumber = `${result}`;
-    one = parseInt(firstNumber);
+    if (firstNumber.includes(".")) {
+      one = parseFloat(firstNumber);
+    } else {
+      one = parseInt(firstNumber);
+    }
     secondNumber = "";
     operator = "";
     result = null;
@@ -39,7 +47,11 @@ function operate() {
     result = multiply(one, two);
     display.textContent = result;
     firstNumber = `${result}`;
-    one = parseInt(firstNumber);
+    if (firstNumber.includes(".")) {
+      one = parseFloat(firstNumber);
+    } else {
+      one = parseInt(firstNumber);
+    }
     secondNumber = "";
     operator = "";
     result = null;
@@ -55,7 +67,11 @@ function operate() {
     } else {
       display.textContent = result;
       firstNumber = `${result}`;
-      one = parseInt(firstNumber);
+      if (firstNumber.includes(".")) {
+        one = parseFloat(firstNumber);
+      } else {
+        one = parseInt(firstNumber);
+      }
       secondNumber = "";
       operator = "";
       result = null;
@@ -70,17 +86,26 @@ const negate = document.querySelector(".negation");
 const operation = document.querySelector(".operate");
 const clear = document.querySelector(".clear");
 const remove = document.querySelector(".delete");
+const dot = document.querySelector(".dot");
 
 number.forEach((item) =>
   item.addEventListener("click", () => {
     const numbersIndex = item.dataset.index;
     if (operator == "") {
       firstNumber = firstNumber + `${numbersIndex}`;
-      one = parseInt(firstNumber);
+      if (firstNumber.includes(".")) {
+        one = parseFloat(firstNumber);
+      } else {
+        one = parseInt(firstNumber);
+      }
       display.textContent = one;
     } else if (firstNumber !== "") {
       secondNumber = secondNumber + `${numbersIndex}`;
-      two = parseInt(secondNumber);
+      if (secondNumber.includes(".")) {
+        two = parseFloat(secondNumber);
+      } else {
+        two = parseInt(secondNumber);
+      }
       display.textContent = one + operator + two;
     }
   })
@@ -104,7 +129,11 @@ signs.forEach((sign) => {
         //to give us the result so we can proceed with a second operation
         operate();
         operator = `${signsIndex}`;
-        one = parseInt(firstNumber);
+        if (firstNumber.includes(".")) {
+          one = parseFloat(firstNumber);
+        } else {
+          one = parseInt(firstNumber);
+        }
         display.textContent = one + operator;
       }
     }
@@ -117,6 +146,7 @@ negate.addEventListener("click", () => {
     display.textContent = firstNumber;
   } else if (firstNumber !== "" && operator == "") {
     if (firstNumber == "-") {
+      // so that we won't have 2 successive operators
     } else {
       operator = "-";
       display.textContent = one + operator;
@@ -130,7 +160,11 @@ negate.addEventListener("click", () => {
     } else {
       operate();
       operator = "-";
-      one = parseInt(firstNumber);
+      if (firstNumber.includes(".")) {
+        one = parseFloat(firstNumber);
+      } else {
+        one = parseInt(firstNumber);
+      }
       display.textContent = one + operator;
     }
   }
@@ -182,8 +216,13 @@ remove.addEventListener("click", () => {
         one = 0;
         display.textContent = 0;
       } else {
-        one = parseInt(firstNumber);
-        display.textContent = one;
+        if (firstNumber.includes(".")) {
+          one = parseFloat(firstNumber);
+          display.textContent = one;
+        } else {
+          one = parseInt(firstNumber);
+          display.textContent = one;
+        }
       }
     }
   } else if (operator !== "" && secondNumber == "") {
@@ -205,8 +244,38 @@ remove.addEventListener("click", () => {
         two = 0;
         display.textContent = one + operator + secondNumber;
       } else {
-        two = parseInt(secondNumber);
-        display.textContent = one + operator + two;
+        if (secondNumber.includes(".")) {
+          two = parseFloat(secondNumber);
+          display.textContent = one + operator + two;
+        } else {
+          two = parseInt(secondNumber);
+          display.textContent = one + operator + two;
+        }
+      }
+    }
+  }
+});
+
+dot.addEventListener("click", () => {
+  if (firstNumber !== "" && firstNumber !== "-" && secondNumber == "") {
+    if (firstNumber.includes(".")) {
+    } else {
+      firstNumber = firstNumber + ".";
+      display.textContent = firstNumber;
+    }
+  } else if (operator !== "" && secondNumber !== "") {
+    if (secondNumber.includes(".")) {
+    } else {
+      if (secondNumber == "-") {
+      } else if (secondNumber !== "-") {
+        if (secondNumber.includes("-") && secondNumber.length > 1) {
+          secondNumber = secondNumber + ".";
+          display.textContent = firstNumber + operator + secondNumber;
+        } else if (!secondNumber.includes("-")) {
+          secondNumber = secondNumber + ".";
+          display.textContent = firstNumber + operator + secondNumber;
+        }
+      } else {
       }
     }
   }
