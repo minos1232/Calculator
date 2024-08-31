@@ -69,6 +69,7 @@ const signs = document.querySelectorAll(".operator");
 const negate = document.querySelector(".negation");
 const operation = document.querySelector(".operate");
 const clear = document.querySelector(".clear");
+const remove = document.querySelector(".delete");
 
 number.forEach((item) =>
   item.addEventListener("click", () => {
@@ -97,6 +98,15 @@ signs.forEach((sign) => {
       }
     } else if (operator !== "" && secondNumber == "") {
       //no changes to avoid error
+    } else if (secondNumber !== "") {
+      if (secondNumber == "-") {
+      } else {
+        //to give us the result so we can proceed with a second operation
+        operate();
+        operator = `${signsIndex}`;
+        one = parseInt(firstNumber);
+        display.textContent = one + operator;
+      }
     }
   });
 });
@@ -114,6 +124,14 @@ negate.addEventListener("click", () => {
   } else if (operator !== "" && secondNumber == "") {
     secondNumber = "-";
     display.textContent = one + operator + secondNumber;
+  } else if (secondNumber !== "") {
+    if (secondNumber == "-") {
+    } else {
+      operate();
+      operator = "-";
+      one = parseInt(firstNumber);
+      display.textContent = one + operator;
+    }
   }
 });
 
