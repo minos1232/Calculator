@@ -4,6 +4,7 @@ let secondNumber = "";
 one = 0;
 two = 0;
 let result = null;
+
 function add(a, b) {
   return a + b;
 }
@@ -67,6 +68,7 @@ const number = document.querySelectorAll(".number");
 const signs = document.querySelectorAll(".operator");
 const negate = document.querySelector(".negation");
 const operation = document.querySelector(".operate");
+const clear = document.querySelector(".clear");
 
 number.forEach((item) =>
   item.addEventListener("click", () => {
@@ -132,4 +134,14 @@ operation.addEventListener("click", () => {
     operator = "";
     result = null;
   }
+});
+
+clear.addEventListener("click", () => {
+  firstNumber = "";
+  secondNumber = "";
+  one = 0;
+  two = 0;
+  operator = "";
+  result = null;
+  display.textContent = 0;
 });
