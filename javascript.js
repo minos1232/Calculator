@@ -1,6 +1,9 @@
 let firstNumber = "";
 let operator = "";
 let secondNumber = "";
+one = 0;
+two = 0;
+let result = null;
 function add(a, b) {
   return a + b;
 }
@@ -24,12 +27,12 @@ number.forEach((item) =>
     const numbersIndex = item.dataset.index;
     if (operator == "") {
       firstNumber = firstNumber + `${numbersIndex}`;
-      firstInt = parseInt(firstNumber);
-      display.textContent = firstInt;
+      one = parseInt(firstNumber);
+      display.textContent = one;
     } else if (firstNumber !== "") {
       secondNumber = secondNumber + `${numbersIndex}`;
-      secondInt = parseInt(secondNumber);
-      display.textContent = firstInt + operator + secondInt;
+      two = parseInt(secondNumber);
+      display.textContent = one + operator + two;
     }
   })
 );
@@ -37,10 +40,14 @@ signs.forEach((sign) => {
   sign.addEventListener("click", () => {
     const signsIndex = sign.dataset.index;
     if (firstNumber !== "" && operator == "") {
-      operator = `${signsIndex}`;
-      display.textContent = firstInt + operator;
+      if (firstNumber == "-") {
+        // so that we won't have 2 successive operators
+      } else {
+        operator = `${signsIndex}`;
+        display.textContent = one + operator;
+      }
     } else if (operator !== "" && secondNumber == "") {
-      display.textContent = firstInt + operator;
+      //no changes to avoid error
     }
   });
 });
@@ -50,11 +57,14 @@ negate.addEventListener("click", () => {
     firstNumber = "-";
     display.textContent = firstNumber;
   } else if (firstNumber !== "" && operator == "") {
-    operator = "-";
-    console.log(operator);
-    display.textContent = firstInt + operator;
-  } else if (operator !== "") {
+    if (firstNumber == "-") {
+    } else {
+      operator = "-";
+      display.textContent = one + operator;
+    }
+  } else if (operator !== "" && secondNumber == "") {
     secondNumber = "-";
-    display.textContent = firstInt + operator + secondNumber;
+
+    display.textContent = one + operator + secondNumber;
   }
 });
