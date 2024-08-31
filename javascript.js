@@ -126,6 +126,7 @@ negate.addEventListener("click", () => {
     display.textContent = one + operator + secondNumber;
   } else if (secondNumber !== "") {
     if (secondNumber == "-") {
+      //to give us the result so we can proceed with a second operation
     } else {
       operate();
       operator = "-";
@@ -162,4 +163,51 @@ clear.addEventListener("click", () => {
   operator = "";
   result = null;
   display.textContent = 0;
+});
+
+remove.addEventListener("click", () => {
+  if (firstNumber !== "" && operator == "" && secondNumber == "") {
+    if (firstNumber == "-") {
+      firstNumber = "";
+      one = 0;
+      display.textContent = 0;
+    } else {
+      firstNumber = firstNumber.slice(0, -1);
+      if (firstNumber == "-") {
+        firstNumber = "-";
+        one = 0;
+        display.textContent = firstNumber;
+      } else if (firstNumber == "") {
+        firstNumber = "";
+        one = 0;
+        display.textContent = 0;
+      } else {
+        one = parseInt(firstNumber);
+        display.textContent = one;
+      }
+    }
+  } else if (operator !== "" && secondNumber == "") {
+    operator = "";
+    display.textContent = one;
+  } else if (operator !== "" && secondNumber !== "") {
+    if (secondNumber == "-") {
+      secondNumber = "";
+      two = 0;
+      display.textContent = one + operator;
+    } else {
+      secondNumber = secondNumber.slice(0, -1);
+      if (secondNumber == "-") {
+        secondNumber = "-";
+        two = 0;
+        display.textContent = one + operator + secondNumber;
+      } else if (secondNumber == "") {
+        secondNumber = "";
+        two = 0;
+        display.textContent = one + operator + secondNumber;
+      } else {
+        two = parseInt(secondNumber);
+        display.textContent = one + operator + two;
+      }
+    }
+  }
 });
