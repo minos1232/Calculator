@@ -1,10 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Digital+7&display=swap");
+
 * {
   box-sizing: border-box;
 }
 body {
   display: flex;
   justify-content: center;
-  height: 100vh;
+  height: 90vh;
+  background-color: rgb(51, 51, 152);
 }
 .Calculator {
   display: flex;
@@ -12,7 +15,7 @@ body {
   width: 500px;
   justify-content: center;
   align-self: center;
-  background-color: rgb(119, 8, 150);
+  background-color: rgb(96, 193, 151);
   flex-direction: column;
   border-radius: 5px;
   border: none;
@@ -28,10 +31,13 @@ body {
   width: 100%;
 }
 .display {
+  font-family: "Digital-7", sans-serif;
   display: flex;
   background-color: grey;
   margin: 5px 5px 2px;
+  padding: 0px 10px;
   flex-grow: 1;
+  border-radius: 10px;
   align-items: center;
   justify-content: end;
   font-size: xx-large;
@@ -51,18 +57,48 @@ button {
   border: 0;
   padding: 0;
   margin: 3px;
-  border-radius: 5px;
+  border-radius: 10px;
   border: none;
   align-items: center;
   justify-content: center;
   font-size: larger;
   font-weight: bold;
 }
+.rowOne .operator {
+  max-width: 117px;
+  margin-left: auto;
+  margin-right: 5px;
+}
+.left {
+  display: flex;
+  justify-content: center;
+  flex: auto;
+  margin: 0px 5px;
+}
+.left .delete,
+.left .clear {
+  max-width: 200px;
+  background-color: rgb(230, 199, 156);
+}
 .rowFive .number {
   max-width: 300px;
   flex-grow: 2;
 }
-.rowFive .operate {
-  max-width: 300px;
+
+.rowFive .operate,
+.rowFive .dot {
   flex-grow: 1;
+}
+.number,
+.dot {
+  background-color: rgb(120, 88, 111);
+  color: white;
+}
+.operator,
+.negation {
+  background-color: rgb(224, 56, 56);
+  color: white;
+}
+.operate {
+  background-color: rgb(224, 56, 56);
 }
