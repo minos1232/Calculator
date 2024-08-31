@@ -17,10 +17,56 @@ function divide(a, b) {
   return a / b;
 }
 
+function operate() {
+  if (operator == "+") {
+    result = add(one, two);
+    display.textContent = result;
+    firstNumber = `${result}`;
+    one = parseInt(firstNumber);
+    secondNumber = "";
+    operator = "";
+    result = null;
+  } else if (operator == "-") {
+    result = subtract(one, two);
+    display.textContent = result;
+    firstNumber = `${result}`;
+    one = parseInt(firstNumber);
+    secondNumber = "";
+    operator = "";
+    result = null;
+  } else if (operator == "*") {
+    result = multiply(one, two);
+    display.textContent = result;
+    firstNumber = `${result}`;
+    one = parseInt(firstNumber);
+    secondNumber = "";
+    operator = "";
+    result = null;
+  } else if (operator == "/") {
+    result = divide(one, two);
+    if (result == Infinity) {
+      //when dividing by 0
+      display.textContent = "ERROR";
+      firstNumber = "";
+      secondNumber = "";
+      operator = "";
+      result = null;
+    } else {
+      display.textContent = result;
+      firstNumber = `${result}`;
+      one = parseInt(firstNumber);
+      secondNumber = "";
+      operator = "";
+      result = null;
+    }
+  }
+}
+
 const display = document.querySelector(".display");
 const number = document.querySelectorAll(".number");
 const signs = document.querySelectorAll(".operator");
 const negate = document.querySelector(".negation");
+const operation = document.querySelector(".operate");
 
 number.forEach((item) =>
   item.addEventListener("click", () => {
@@ -36,6 +82,7 @@ number.forEach((item) =>
     }
   })
 );
+
 signs.forEach((sign) => {
   sign.addEventListener("click", () => {
     const signsIndex = sign.dataset.index;
@@ -64,7 +111,25 @@ negate.addEventListener("click", () => {
     }
   } else if (operator !== "" && secondNumber == "") {
     secondNumber = "-";
-
     display.textContent = one + operator + secondNumber;
+  }
+});
+
+operation.addEventListener("click", () => {
+  if (firstNumber !== "" && secondNumber !== "" && operator !== "") {
+    if (secondNumber == "-") {
+      // = after "-" nothing will happen
+    } else operate();
+  } else if (firstNumber !== "" && secondNumber == "" && operator == "") {
+    if (firstNumber == "-") {
+      // = after "-" nothing as well
+    } else display.textContent = one;
+  } else if (secondNumber == "" && operator !== "") {
+    // ex 5*=error
+    display.textContent = "ERROR";
+    firstNumber = "";
+    secondNumber = "";
+    operator = "";
+    result = null;
   }
 });
